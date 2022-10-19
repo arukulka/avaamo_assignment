@@ -6,5 +6,5 @@ Steps to set configure the git hooks:
 2. Do ls -ltra to see the hidden files and get in to .git/hooks/ directory.
 3. Create a new file with the name post-commit and give +x (executable) permission4. Put in the below script.
 	#!/bin/bash
-	echo "Post commit hook"git push origin master
+	echo "Post commit hook"git push origin master/main
 	exit 0
