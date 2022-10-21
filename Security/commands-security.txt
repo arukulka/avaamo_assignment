@@ -1,0 +1,21 @@
+# If you want to block the ssh access to a linux instance, you can use the firewalld for both tcp and udp protocols.
+$ sudo firewall-cmd --remove-port=22/tcp --permanent
+$ sudo firewall-cmd --remove-port=22/udp --permanent
+
+============================================================================================
+#Using PORT forwarding we can ssh to an EC2 instance with public IP to an EC2 instance with private IP
+#Create a .config file under /etc/ by ssh'ing to the EC2 instance with public IP.
+
+{
+	"Web-App-Bastion" : {
+		"SPORT" : "2222",
+		"DHOST" : "${DestnationHostIP}",
+		"DPORT" : "${DestnationHostPort}"
+		"PROTOCOL" : "tcp"
+	}
+
+}
+
+#Reboot the instance.
+# Now try connecting to the EC2 instance without Public IP using below ssh command.
+ssh -i "my-key.pem" ec2-user@ec2-44-211-213-122.compute-1.amazonaws.com -p 2222
