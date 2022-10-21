@@ -1,0 +1,17 @@
+List the process using network command.
+======================================
+sudo iptraf -h
+sudo netstat -tunp | grep 22
+tcp        0     36 172.31.84.60:22         49.205.147.17:34310     ESTABLISHED 6696/sshd: ec2-user
+
+
+list of IPs a process is connected to
+======================================
+ss -tun state connected
+Netid                State                   Recv-Q                Send-Q                               Local Address:Port                                 Peer Address:Port                Process
+tcp                  ESTAB                   0                     36                                    172.31.84.60:22                                  49.205.147.17:34310
+tcp                  SYN-RECV                0                     0                                     172.31.84.60:22                                 34.105.178.142:48896
+
+to list open files and kill processes tied to a user
+===================================================
+kill -9 $(lsof -t -u username)
